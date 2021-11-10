@@ -1,0 +1,78 @@
+message.channel.send('Loading data').then (async (msg) =>{
+      msg.delete()
+      message.channel.send(`🏓Latency is ${msg.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
+    })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports ={
+    name:"ping",
+    execute(message, args){
+        const discordPing = message.client.ws.ping;
+
+        message.channel.send("Ping Hesaplanıyor...").then(msg =>{
+            const ping = msg.createTimeStamp - message.createTimeStamp;
+            msg.edit(`Discord Gecikmesi: ${discordPing} ms\nBot Gecikmesi: ${ping}ms`);
+        })
+    }
+}
+
+
+
+
+ const activities = [
+        "codain",
+        "📵",
+        "3",
+        "4"
+      ];
+      
+      client.on("ready", () => {
+        // run every 10 seconds
+        setInterval(() => {
+          // generate random number between 1 and list length.
+          const randomIndex = Math.floor(Math.random() * (activities.length - 1) + 1);
+          const newActivity = activities[randomIndex];
+        
+      
+          client.user.setActivity(newActivity);
+        }, 10000);
+        client.user.setActivity(" ", { type: 'COMPETING' });
+        console.log(`${client.user.username} \n${client.user.id} \nBot hazır`);
+      });
+
+
+
+
+
+
+      
+      
+      
+      
+ if (!args.length) return message.channel.send("Lütfen komut adını giriniz!")
+        const commandName = args[0];
+        const command = client.commands.get(commandName) ||
+            client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
+        if (!command) return message.channnel.send(`${commandName} adında bir komut bulunmadı.`);
+
+        delete require.cache[require.resolve(`./${commandName}.js`)];
+
+        const newCommand = require(`./${command.name}`)
+        client.commands.set(commandName, newCommand);
+
+        message.channel.send(`\`${command.name}\` adlı komut başarıyla yenilendi.`)
+    }
